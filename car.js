@@ -8,12 +8,12 @@
 
 function Car (x, y) {
     
-    this.pos = createVector(width/2, height/2);
+    this.pos = createVector(width/2, height/6);
     this.x = -20;
     this.y = -40;
     this.width = 40;
     this.height = 80;  
-    this.heading = PI/-2;
+    this.heading = PI/1;
     this.turn = function(){
         this.heading += this.rotation;
     }
@@ -44,9 +44,13 @@ function Car (x, y) {
     this.render = function () {
         translate(this.pos.x, this.pos.y);
         rotate (this.heading + PI/2);
-        fill(255, 150, 0);
-        stroke(0);
+        
+        fill(0, 0, 0, 0);
+        stroke(0,0,0,0);
+        
+        
         rect(this.x, this.y, this.width, this.height);
+        image(carSprite, -this.width / 2, -this.height / 2, this.width  -40, this.height -80);
     
     
     }
@@ -57,7 +61,7 @@ function Car (x, y) {
 // Wertbeänderung für die Bewegungseigenschaften (setRotation,
 // thrusting) des Objekts (Car) bestimmt. 
 
-// Try to solve that issue with pressing/holding 2 keys simultaneously
+// Try to solve that issue that the car can turn on the spot
     
 }
 
@@ -79,6 +83,17 @@ function keyPressed() {
 }
 
 function keyReleased() {
-    car.setRotation(0);
-    car.thrusting(false);
+    switch (keyCode) {
+        case RIGHT_ARROW:
+        car.setRotation(0.0);
+        break;
+        case LEFT_ARROW:
+        car.setRotation(0.0);
+        break;
+        case UP_ARROW:
+        car.thrusting(false);
+        break;
+       
+    }
+    
 }
